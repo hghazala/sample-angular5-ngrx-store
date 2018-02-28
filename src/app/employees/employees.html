@@ -1,0 +1,12 @@
+<div>
+  <input [(ngModel)]="newEmployee.name" placeholder="name..."/>
+  <input [(ngModel)]="newEmployee.age" placeholder="age..."/>
+</div>
+<br />
+<button (click)="addEmployee()">Add Employee</button>
+<div>
+  <li *ngFor="let employee of employees | async">
+    {{employee.name}} - {{employee.age}}
+  </li>
+</div>
+<br/>
