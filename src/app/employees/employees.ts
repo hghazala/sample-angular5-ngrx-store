@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
 import {Employee} from './store/model/employee';
 import {Store} from '@ngrx/store';
 import {EmployeeState} from '../app.state';
 import * as employeesReducer from './store/reducers/employees.reducer';
-import {EmployeeActions} from './store/actions/employee.actions';
+import {EmployeeActions, LOAD_EMPLOYEES} from './store/actions/employee.actions';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'employees',
@@ -19,12 +19,18 @@ export class EmployeesComponent implements OnInit {
   constructor(private store: Store<EmployeeState>) {}
 
   public ngOnInit() {
+    this.loadEmployees();
     this.employees = this.store.select(employeesReducer.getEmployees);
   }
 
+  loadEmployees() {
+    this.store.dispatch(new EmployeeActions(LOAD_EMPLOYEES));
+  }
+
   public addEmployee() {
-    this.store.dispatch(
-     new EmployeeActions(new Employee(this.newEmployee.name, this.newEmployee.age))
-    );
+    // TODO
+    // this.store.dispatch(
+    //   new EmployeeActions(ADD_EMPLOYEE, new Employee(this.newEmployee.adress, this.newEmployee.name, this.newEmployee.age))
+    // );
   }
 }

@@ -1,4 +1,4 @@
-import {ADD_EMPLOYEE, EmployeeActions} from '../actions/employee.actions';
+import {ADD_EMPLOYEE, EmployeeActions, LOAD_EMPLOYEES_SUCCESS} from '../actions/employee.actions';
 import {EmployeeState} from '../../../app.state';
 import {createFeatureSelector, createSelector} from '@ngrx/store';
 
@@ -7,18 +7,24 @@ export const initialState: EmployeeState = {
 };
 
 export function employeesReducer(state = initialState, action: EmployeeActions): EmployeeState {
-
   switch (action.type) {
     case ADD_EMPLOYEE:
-      initialState.employees.push(action.payload);
-      return initialState;
+      // TODO
+      return;
+
+    case LOAD_EMPLOYEES_SUCCESS:
+      return {employees: action.payload};
 
     default:
-      return initialState;
+      return state;
   }
 }
 
-export const getEmployeesState = createFeatureSelector<EmployeeState>('employeeState');
+// Create the employee state
+export const getEmployeesState = createFeatureSelector('employeeState');
 
-export const getEmployees = createSelector(getEmployeesState, (state: EmployeeState) => state.employees);
-
+// Project employeeState into variable employees of state
+export const getEmployees = createSelector(
+  getEmployeesState,
+  (state: EmployeeState) => state.employees
+);

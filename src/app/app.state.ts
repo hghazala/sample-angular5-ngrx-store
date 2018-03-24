@@ -1,6 +1,6 @@
 import {Employee} from './employees/store/model/employee';
 
-//manage all app state
+//manage general app state
 export interface AppState {
   employeeState: EmployeeState;
 }
