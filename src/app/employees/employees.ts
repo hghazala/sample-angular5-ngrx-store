@@ -7,9 +7,9 @@ import {EmployeeActions, LOAD_EMPLOYEES} from './store/actions/employee.actions'
 import {Observable} from 'rxjs/Observable';
 
 @Component({
-  selector: 'employees',
+  selector: 'employees-details',
   templateUrl: './employees.html',
-  styleUrls: ['./employees.css']
+  styleUrls: ['./employees.scss']
 })
 export class EmployeesComponent implements OnInit {
 
