@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Actions, Effect} from '@ngrx/effects';
 import {EmployeesService} from '../../employees.service';
-import {EmployeeActions, LOAD_EMPLOYEES, LOAD_EMPLOYEES_SUCCESS} from '../actions/employee.actions';
+import {ADD_EMPLOYEE, EmployeeActions, LOAD_EMPLOYEES, LOAD_EMPLOYEES_SUCCESS} from '../actions/employee.actions';
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
 import {Action} from '@ngrx/store';
 
@@ -20,6 +21,15 @@ export class EmployeesEffects {
   @Effect()
   loadEmployees$: Observable<Action> = this.actions$
     .ofType(LOAD_EMPLOYEES)
-    .switchMap(() => this.employeeService.loadAll())
-    .map(employees => new EmployeeActions(LOAD_EMPLOYEES_SUCCESS, employees));
+    .switchMap(
+      () => this.employeeService.loadAll()
+        .map(employees => new EmployeeActions(LOAD_EMPLOYEES_SUCCESS, employees))
+    );
+
+  @Effect()
+  addEmployee$ = this.actions$
+    .ofType(ADD_EMPLOYEE)
+    .switchMap(
+      (action: EmployeeActions) => this.employeeService.addEmployee(action.payload)
+    );
 }

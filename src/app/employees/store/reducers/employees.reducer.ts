@@ -8,9 +8,9 @@ export const initialState: EmployeeState = {
 
 export function employeesReducer(state = initialState, action: EmployeeActions): EmployeeState {
   switch (action.type) {
+
     case ADD_EMPLOYEE:
-      // TODO
-      return;
+      return {employees: state.employees.concat(action.payload)}
 
     case LOAD_EMPLOYEES_SUCCESS:
       return {employees: action.payload};

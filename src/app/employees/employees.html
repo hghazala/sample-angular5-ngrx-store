@@ -1,15 +1,18 @@
 <div>
   <div>
-    <ul>This is my employees list :</ul>
-    <li *ngFor="let employee of employees | async">
-      {{employee.name}} - {{employee.age}} - {{employee.adress}}
-    </li>
+    <ul>
+      <span>This is my employees list :</span>
+      <li *ngFor="let employee of employees | async">
+        {{employee.name}} - {{employee.age}} - {{employee.adress}}
+      </li>
+    </ul>
   </div>
   <br/>
   <div>
     Adding new employee to my list (To be implemented ...)
     <input [(ngModel)]="newEmployee.name" placeholder="name..."/>
     <input [(ngModel)]="newEmployee.age" placeholder="age..."/>
+    <input [(ngModel)]="newEmployee.adress" placeholder="adress..."/>
   </div>
   <br/>
   <button (click)="addEmployee()">Add Employee</button>

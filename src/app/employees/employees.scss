@@ -1,16 +1,25 @@
 $color-orange: darkorange;
-
 div {
   background-color: aliceblue;
   padding: 20px;
   div {
     ul {
-      padding-left: 10px;
-      padding-bottom: 10px;
-      margin: 0px;
-      color: $color-orange;
-      font-weight: bold;
-      font-style: italic;
+      span {
+        padding-left: 10px;
+        padding-bottom: 10px;
+        margin: 0px;
+        color: $color-orange;
+        font-weight: bold;
+        font-size: 20px;
+      }
+
+      li {
+        &:hover {
+          // Ce style s'applique sur les ils avec class="toto"
+          background: bisque;
+          width: 25%;
+        }
+      }
     }
   }
 }

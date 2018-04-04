@@ -3,8 +3,9 @@ import {Employee} from './store/model/employee';
 import {Store} from '@ngrx/store';
 import {EmployeeState} from '../app.state';
 import * as employeesReducer from './store/reducers/employees.reducer';
-import {EmployeeActions, LOAD_EMPLOYEES} from './store/actions/employee.actions';
+import {ADD_EMPLOYEE, EmployeeActions, LOAD_EMPLOYEES} from './store/actions/employee.actions';
 import {Observable} from 'rxjs/Observable';
+import {toPayload} from '@ngrx/effects';
 
 @Component({
   selector: 'employees-details',
@@ -16,7 +17,8 @@ export class EmployeesComponent implements OnInit {
   employees: Observable<Employee[]>;
   newEmployee = new Employee();
 
-  constructor(private store: Store<EmployeeState>) {}
+  constructor(private store: Store<EmployeeState>) {
+  }
 
   public ngOnInit() {
     this.loadEmployees();
@@ -28,9 +30,7 @@ export class EmployeesComponent implements OnInit {
   }
 
   public addEmployee() {
-    // TODO
-    // this.store.dispatch(
-    //   new EmployeeActions(ADD_EMPLOYEE, new Employee(this.newEmployee.adress, this.newEmployee.name, this.newEmployee.age))
-    // );
+    const addEmployeeAction = new EmployeeActions(ADD_EMPLOYEE, this.newEmployee);
+    this.store.dispatch(addEmployeeAction);
   }
 }
